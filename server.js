@@ -31,6 +31,17 @@ server.get("/bacheca", (req, res) => {
     res.json(responseObject);
 });
 
+
+server.get("/bacheca/:id", (req, res) => {
+    const index = parseInt(req.params.id)
+    const objId = posts.find((element) => index === element.id)
+    if (objId) {
+        res.json(objId);
+    } else {
+        res.send("Id not Found!")
+    }
+});
+
 server.all('*', (req, res) => {
     res.status(404).send('<h1>Not Found !</h1>');
 })
